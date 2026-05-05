@@ -2,9 +2,9 @@ public class Main {
     public static void main(String[] args) {
         int[] f=VectorBooleanFunc.buildF();
         int[] g = VectorBooleanFunc.buildG();
-        int[][] fBits =CoordinateFunc.decompose(f);
+        /*int[][] fBits =CoordinateFunc.decompose(f);
         int[][] gBits = CoordinateFunc.decompose(g);
-        /*int[] fDis=BooleanProp.allDisbalance(fBits);
+        int[] fDis=BooleanProp.allDisbalance(fBits);
         int[] gDis =BooleanProp.allDisbalance(gBits);
         System.out.println("дисбаланс f:");
         for (int i = 0; i < 17; i++) {
@@ -53,7 +53,7 @@ public class Main {
                 System.out.print(gAval[coord][i] + " ");
             }
             System.out.println();
-        }*/
+        }
         int[] fAvg=BooleanProp.avgAvalanche(f);
         int[] gAvg =BooleanProp.avgAvalanche(g);
         System.out.println("середній лавинний ефект f: ");
@@ -63,7 +63,11 @@ public class Main {
         System.out.println("середній лавинний ефект g: ");
         for (int i = 0; i < 17; i++){
             System.out.println("g"+ (i + 1) + ": " + gAvg[i]);
-        }
+        }*/
+        double fMdp =BooleanProp.maxDifferentialP(f);
+        double gMdp = BooleanProp.maxDifferentialP(g);
+        System.out.printf("MDP f: %.10f\n", fMdp);
+        System.out.printf("MDP g: %.10f\n", gMdp);
 
     }
 

@@ -112,4 +112,20 @@ public class BooleanProp {
         return res;
     }
 
+    public static double maxDifferentialP(int[] func) {
+        int size=func.length;
+        int[] count = new int[size];
+        int maxCount =0;
+        int a = 1;
+        for (int x = 0;x < size;x++) {
+            int diff =func[x]^func[x ^ a];
+            count[diff]++;
+            if (count[diff] > maxCount) {
+                maxCount = count[diff];
+            }
+        }
+        return maxCount/(double) size;
+    }
+
+
 }
