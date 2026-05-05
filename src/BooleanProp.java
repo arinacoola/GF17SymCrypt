@@ -114,18 +114,99 @@ public class BooleanProp {
 
     public static double maxDifferentialP(int[] func) {
         int size=func.length;
-        int[] count = new int[size];
         int maxCount =0;
-        int a = 1;
-        for (int x = 0;x < size;x++) {
-            int diff =func[x]^func[x ^ a];
-            count[diff]++;
-            if (count[diff] > maxCount) {
-                maxCount = count[diff];
+        for (int a =1;a <size; a++) {
+            int[] count = new int[size];
+            for (int x = 0;x < size;x++){
+                int diff =func[x] ^ func[x ^ a];
+                count[diff]++;
+                if (count[diff] > maxCount) {
+                    maxCount = count[diff];
+                }
             }
         }
         return maxCount/(double) size;
     }
 
+
+    public static int algebraDeg(int[] func) {
+        int[] anf = func.clone();
+        for (int bit = 0;bit < N;bit++) {
+            for (int mask = 0;mask < fieldSize;mask++) {
+                if ((mask & (1 << bit)) != 0){
+                    anf[mask]^= anf[mask ^(1 << bit)];
+                }
+            }
+        }
+        int degree=0;
+        for (int mask =0;mask < fieldSize;mask++) {
+            if (anf[mask]!= 0){
+                degree = Math.max(degree,Integer.bitCount(mask));
+            }
+        }
+        return degree;
+    }
+
+    public static int[] allAlgebraDeg(int[][] func) {
+        int[] res =new int[N];
+        for (int i = 0; i < N; i++) {
+            res[i]=algebraDeg(func[i]);
+        }
+        return res;
+    }
+
+    public static int vectorAlgebraDeg(int[][] func) {
+        int max =0;
+        for (int i = 0;i < N;i++) {
+            max = Math.max(max,algebraDeg(func[i]));
+        }
+        return max;
+    }
+
+    public static double[][] avalancheDeviationPercent(int[][] func) {
+        int[][] k =allAvalanche(func);
+        double[][] eps =   new double[N][N];
+        double expected = 1 <<(N - 1);
+        for (int coord = 0;coord < N;coord++) {
+            for (int i =0; i < N; i++) {
+                eps[coord][i] = Math.abs(k[coord][i] - expected) /expected * 100.0;
+            }
+        }
+        return eps;
+    }
+
+    public static double[] avgAvalancheDeviationPercent(int[] func) {
+        int[] k =avgAvalanche(func);
+        double[] eps=new double[N];
+        double expected =N * (1 << (N - 1));
+        for (int i = 0; i < N; i++) {
+            eps[i]=Math.abs(k[i] - expected)/expected * 100.0;
+        }
+        return eps;
+    }
+
+    public static boolean hasAvalancheZeroLvl(int[][] func) {
+        int[][] k =allAvalanche(func);
+        int expected = 1 << (N-1);
+        for (int coord = 0;coord < N; coord++) {
+            for (int i = 0; i < N; i++){
+                if (k[coord][i] !=expected) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static boolean hasStrictAvalancheAverage(int[] func) {
+        int[] k = avgAvalanche(func);
+        int expected =N *(1<< (N - 1));
+        for (int i = 0;i < N;i++) {
+            if (k[i] != expected) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }
