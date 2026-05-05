@@ -16,6 +16,16 @@ public class Main {
         }
         int[] walsh = WalshTransform.transform(fBits[0]);
         System.out.println(walsh[0]);
+        int[] fNl = BooleanProp.allNonlinearities(fBits);
+        int[] gNl = BooleanProp.allNonlinearities(gBits);
+        System.out.println("нелінійність f:");
+        for (int i = 0;i < 17; i++){
+            System.out.println("f" +(i + 1) +": " + fNl[i]);
+        }
+        System.out.println("нелінійність g:");
+        for (int i=0; i < 17; i++) {
+            System.out.println("g"+ (i+1) + ": " + gNl[i]);
+        }
     }
 }
 
