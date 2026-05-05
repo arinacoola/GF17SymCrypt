@@ -4,7 +4,7 @@ public class Main {
         int[] g = VectorBooleanFunc.buildG();
         int[][] fBits =CoordinateFunc.decompose(f);
         int[][] gBits = CoordinateFunc.decompose(g);
-        int[] fDis=BooleanProp.allDisbalance(fBits);
+        /*int[] fDis=BooleanProp.allDisbalance(fBits);
         int[] gDis =BooleanProp.allDisbalance(gBits);
         System.out.println("дисбаланс f:");
         for (int i = 0; i < 17; i++) {
@@ -25,6 +25,16 @@ public class Main {
         System.out.println("нелінійність g:");
         for (int i=0; i < 17; i++) {
             System.out.println("g"+ (i+1) + ": " + gNl[i]);
+        }*/
+        int[] fCi=BooleanProp.allCorrelationImmunity(fBits);
+        int[] gCi = BooleanProp.allCorrelationImmunity(gBits);
+        System.out.println("кореляційний імунітет f:");
+        for (int i = 0;i < 17; i++) {
+            System.out.println("f" + (i + 1) + ": " +fCi[i]);
+        }
+        System.out.println("кореляційний імунітет g:");
+        for (int i = 0; i<17;i++) {
+            System.out.println("g" + (i + 1) + ": " + gCi[i]);
         }
     }
 }

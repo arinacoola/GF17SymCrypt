@@ -43,4 +43,35 @@ public class BooleanProp {
         }
         return res;
     }
+
+    public static int correlationImmunity(int[] walsh) {
+        int k =0;
+        for (int t = 1;t <= 17; t++){
+            boolean ok = true;
+            for (int a = 1; a < walsh.length; a++) {
+                if (Integer.bitCount(a)== t) {
+                    if (walsh[a]!= 0) {
+                        ok = false;
+                        break;
+                    }
+                }
+            }
+            if (ok) {
+                k=t;
+            }
+            else {
+                break;
+            }
+        }
+        return k;
+    }
+
+    public static int[] allCorrelationImmunity(int[][] func) {
+        int[] res = new int[17];
+        for (int i = 0; i < 17; i++){
+            int[] walsh=WalshTransform.transform(func[i]);
+            res[i] =correlationImmunity(walsh);
+        }
+        return res;
+    }
 }
