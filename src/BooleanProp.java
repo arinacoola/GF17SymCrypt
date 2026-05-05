@@ -74,4 +74,26 @@ public class BooleanProp {
         }
         return res;
     }
+
+    public static int avalanche(int[] func,int i) {
+        int size=func.length;
+        int count = 0;
+        for (int x = 0;x < size; x++) {
+            int flip=x ^ (1 << i);
+            if (func[x]!=func[flip]) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static int[][] allAvalanche(int[][] func){
+        int[][] res = new int[17][17];
+        for (int f = 0; f < 17; f++) {
+            for (int i = 0;i < 17; i++) {
+                res[f][i] = avalanche(func[f],i);
+            }
+        }
+        return res;
+    }
 }
