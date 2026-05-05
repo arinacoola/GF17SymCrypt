@@ -35,7 +35,7 @@ public class Main {
         System.out.println("кореляційний імунітет g:");
         for (int i = 0; i<17;i++) {
             System.out.println("g" + (i + 1) + ": " + gCi[i]);
-        }*/
+        }
         int[][] fAval = BooleanProp.allAvalanche(fBits);
         int[][] gAval = BooleanProp.allAvalanche(gBits);
         System.out.println("лавинний ефект f:");
@@ -53,6 +53,16 @@ public class Main {
                 System.out.print(gAval[coord][i] + " ");
             }
             System.out.println();
+        }*/
+        int[] fAvg=BooleanProp.avgAvalanche(f);
+        int[] gAvg =BooleanProp.avgAvalanche(g);
+        System.out.println("середній лавинний ефект f: ");
+        for (int i = 0; i < 17; i++){
+            System.out.println("f"+ (i + 1) + ": " + fAvg[i]);
+        }
+        System.out.println("середній лавинний ефект g: ");
+        for (int i = 0; i < 17; i++){
+            System.out.println("g"+ (i + 1) + ": " + gAvg[i]);
         }
 
     }

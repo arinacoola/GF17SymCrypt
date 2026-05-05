@@ -96,4 +96,20 @@ public class BooleanProp {
         }
         return res;
     }
+
+    public static int[] avgAvalanche(int[]  func) {
+        int size=func.length;
+        int[] res = new int[17];
+        for (int i = 0; i < 17; i++){
+            int sum = 0;
+            for (int x = 0;x < size; x++) {
+                int flip=x ^(1 << i);
+                int diff = func[x] ^ func[flip];
+                sum += Integer.bitCount(diff);
+            }
+            res[i] = sum;
+        }
+        return res;
+    }
+
 }
