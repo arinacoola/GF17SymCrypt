@@ -14,6 +14,8 @@ public class Main {
         for (int i = 0; i < 17; i++) {
             System.out.println("g" + (i+1) + ": " + gDis[i]);
         }
+        int[] walsh = WalshTransform.transform(fBits[0]);
+        System.out.println(walsh[0]);
     }
 }
 
