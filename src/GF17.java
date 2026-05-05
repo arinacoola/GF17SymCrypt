@@ -22,5 +22,18 @@ public class GF17 {
         return res& (fieldSize- 1);
     }
 
+    public static int pow(int u, int exp) {
+        int res=1;
+        int base = u;
+        while (exp > 0){
+            if ((exp & 1)!= 0){
+                res= mul(res,base);
+            }
+            base=mul(base,base);
+            exp >>= 1;
+        }
+        return res;
+    }
+
 }
 
