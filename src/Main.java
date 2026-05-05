@@ -1,11 +1,12 @@
 public class Main {
     public static void main(String[] args) {
-        int x=12345;
-        int f=GF17.pow(x,131070);
-        int g=GF17.pow(x,131069);
-        System.out.println(f);
-        System.out.println(g);
-        System.out.println(GF17.mul(5, 7));
-        System.out.println(GF17.mul(7, 5));
+        int[] f=VectorBooleanFunc.buildF();
+        int[] g = VectorBooleanFunc.buildG();
+        System.out.println(f[0]);
+        System.out.println(f[1]);
+        System.out.println(f[12345]);
+        System.out.println(g[0]);
+        System.out.println(g[1]);
+        System.out.println(g[12345]);
     }
 }
